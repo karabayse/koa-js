@@ -1,0 +1,22 @@
+{
+  "name": "koa-js",
+  "version": "1.0.0",
+  "description": "koa.js",
+  "main": "app.js",
+  "scripts": {
+    "start": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "koa-js"
+  },
+  "keywords": [
+    ""
+  ],
+  "author": "Kara Bayse",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.5.3",
+    "nodemon": "^1.18.4"
+  }
+}
