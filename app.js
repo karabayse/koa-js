@@ -21,7 +21,19 @@ app.use(json());
 // app.use(async ctx => (ctx.body = { msg: 'Hello World' }));
 
 render(app, {
+  // look in this folder, root, for the views folder
+  root: path.join(__dirname, 'views'),
+  // a layout wraps all your views
+  layout: 'layout',
+  // configure a views extension
+  viewExt: 'html',
+  cache: false,
+  debug: false
+});
 
+// create a route for the index page
+router.get('/', async ctx => {
+  await ctx.render('index');
 });
 
 router.get('/test', ctx => (ctx.body = 'Hello Test'));
