@@ -31,9 +31,12 @@ render(app, {
   debug: false
 });
 
-// create a route for the index page
+// Create a route for the index page
 router.get('/', async ctx => {
-  await ctx.render('index');
+  await ctx.render('index', {
+    // pass in an object as a second parameter -> add 'title' to index.html
+    title: 'Things I Love:'
+  });
 });
 
 router.get('/test', ctx => (ctx.body = 'Hello Test'));
