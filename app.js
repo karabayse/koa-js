@@ -34,14 +34,26 @@ render(app, {
   debug: false
 });
 
-// Create a route for the index page
-router.get('/', async ctx => {
+// Routes -> function called 'index'
+router.get('/', index);
+
+// List of things -> pass in context, 'ctx'
+async function index(ctx) {
   await ctx.render('index', {
     // pass in an object as a second parameter -> add 'title' to index.html
     title: 'Things I Love:',
     things: things
   });
-});
+}
+
+// Create a route for the index page
+// router.get('/', async ctx => {
+//   await ctx.render('index', {
+    // pass in an object as a second parameter -> add 'title' to index.html
+//     title: 'Things I Love:',
+//     things: things
+//   });
+// });
 
 router.get('/test', ctx => (ctx.body = 'Hello Test'));
 
