@@ -36,6 +36,7 @@ render(app, {
 
 // Routes -> function called 'index'
 router.get('/', index);
+router.get('/add', showAdd);
 
 // List of things -> pass in context, 'ctx'
 async function index(ctx) {
@@ -44,6 +45,11 @@ async function index(ctx) {
     title: 'Things I Love:',
     things: things
   });
+}
+
+// Show add page
+async function showAdd(ctx) {
+  await ctx.render('add');
 }
 
 // Create a route for the index page
