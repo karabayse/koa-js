@@ -1,4 +1,4 @@
-// requires
+// REQUIRES
 const Koa = require('koa');
 // npm install koa-router
 const KoaRouter = require('koa-router');
@@ -8,6 +8,8 @@ const json = require('koa-json');
 const path = require('path');
 // npm install koa-ejs
 const render = require('koa-ejs');
+// npm install koa-bodyparser
+const bodyParser = require('koa-bodyparser');
 
 const app = new Koa();
 const router = new KoaRouter();
@@ -15,9 +17,11 @@ const router = new KoaRouter();
 // Replace with DB (could use MongoDB)
 const things = ['My Family', 'Programming', 'Music']
 
-// uses
+// USES
 // JSON Prettier Middleware
 app.use(json());
+// BodyParser Middleware
+app.use(bodyParser());
 
 // Simple Middleware Example
 // app.use(async ctx => (ctx.body = 'Hello World'));
@@ -37,6 +41,8 @@ render(app, {
 // Routes -> function called 'index'
 router.get('/', index);
 router.get('/add', showAdd);
+// request type different (post rather than add), but same route ('/add')
+router.post('/add', add);
 
 // List of things -> pass in context, 'ctx'
 async function index(ctx) {
@@ -50,6 +56,13 @@ async function index(ctx) {
 // Show add page
 async function showAdd(ctx) {
   await ctx.render('add');
+}
+
+// Add thing
+async function add(ctx) {
+  const body = ctx.request.body;
+  things.push(body.thing);
+  ctx.redirect('/');
 }
 
 // Create a route for the index page
